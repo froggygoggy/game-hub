@@ -1,14 +1,25 @@
-import { Button } from "@chakra-ui/react";
-import { ColorModeButton } from "@/components/ui/color-mode";
+import { Grid, GridItem } from "@chakra-ui/react";
+// Chakra v3 macht Anpassungen notwendig.
 
 function App() {
   return (
-    <>
-      <Button variant="surface">Click Me</Button>
-      <ColorModeButton />
-    </>
+    <Grid
+      templateAreas={{
+        base: `"nav" "main"`, //"0em", // 0px
+        lg: `"nav nav" "aside main"`, //"62em", // ~992px
+      }}
+    >
+      <GridItem area="nav" bg="coral">
+        Nav
+      </GridItem>
+      <GridItem area="aside" bg="gold" hideBelow="lg">
+        Aside
+      </GridItem>
+      <GridItem area="main" bg="dodgerblue">
+        Main
+      </GridItem>
+    </Grid>
   );
-  // return <button type="button">Click Me!</button>;
 }
 
 export default App;
