@@ -1,4 +1,5 @@
 import { Grid, GridItem } from "@chakra-ui/react";
+import NavBar from "./components/NavBar";
 // Chakra v3 macht Anpassungen notwendig.
 
 function App() {
@@ -9,8 +10,8 @@ function App() {
         lg: `"nav nav" "aside main"`, //"62em", // ~992px
       }}
     >
-      <GridItem area="nav" bg="coral">
-        Nav
+      <GridItem area="nav">
+        <NavBar />
       </GridItem>
       <GridItem area="aside" bg="gold" hideBelow="lg">
         Aside
