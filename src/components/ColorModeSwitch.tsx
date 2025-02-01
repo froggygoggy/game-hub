@@ -9,20 +9,22 @@ const ColorModeSwitch = () => {
   return (
     <HStack>
       <Switch
+        // color="gray.900"
         checked={colorMode === "dark"}
         onChange={toggleColorMode}
         colorPalette="teal"
         size="lg"
         trackLabel={{
           on: (
-            <Icon color="gray.900">
-              <FaSun />
-            </Icon>
+            // <Icon color="gray.900">
+            // ^^^^^^^^^^^^^^^^^^^does not work. Causes warning in console.
+            <FaSun />
+            // </Icon>
           ),
           off: (
-            <Icon color="gray.400">
-              <FaMoon />
-            </Icon>
+            // <Icon color="gray.400">
+            <FaMoon />
+            // </Icon>
           ),
         }}
       />

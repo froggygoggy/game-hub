@@ -7,6 +7,7 @@ import { SkeletonText } from "./ui/skeleton";
 const GameCardSkeleton = () => {
   return (
     <Card.Root
+      size="sm"
       width="300"
       variant="elevated"
       borderRadius="15px"
