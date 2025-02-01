@@ -1,4 +1,4 @@
-import { HStack, Text, Icon } from "@chakra-ui/react";
+import { HStack, Text } from "@chakra-ui/react";
 import { Switch } from "@/components/ui/switch";
 import { useColorMode } from "./ui/color-mode";
 import { FaMoon, FaSun } from "react-icons/fa";
