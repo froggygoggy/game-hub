@@ -10,12 +10,7 @@ interface Props {
 }
 const GameCardContainer = ({ children }: Props) => {
   return (
-    <Card.Root
-      width="300"
-      variant="elevated"
-      borderRadius="15px"
-      overflow="hidden"
-    >
+    <Card.Root variant="elevated" borderRadius="15px" overflow="hidden">
       {children}
     </Card.Root>
   );
