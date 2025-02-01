@@ -6,7 +6,12 @@ import { SkeletonText } from "./ui/skeleton";
 
 const GameCardSkeleton = () => {
   return (
-    <Card.Root variant="elevated" borderRadius="15px" overflow="hidden">
+    <Card.Root
+      width="300"
+      variant="elevated"
+      borderRadius="15px"
+      overflow="hidden"
+    >
       {/* <Skeleton height={xl: "200px", } width="600px" /> */}
       <Skeleton width="600px" />
       <CardBody>
