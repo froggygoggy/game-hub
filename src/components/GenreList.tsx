@@ -1,10 +1,16 @@
-import useGenres from "@/hooks/useGenres";
+import useGenres, { Genre } from "@/hooks/useGenres";
 import getCroppedImageUrl from "@/services/image-url";
 import { Button, Image, List } from "@chakra-ui/react";
 // import { Spinner } from "@chakra-ui/react";
 import GenreSkeleton from "./GenreSkeleton";
 
-const GenreList = () => {
+// Die übergeordnete Komponente App.tsx soll informiert werden, dass sich
+// ein ausgewähltes Genre geändert hat
+interface Props {
+  onSelectGenre: (genre: Genre) => void;
+}
+
+const GenreList = ({ onSelectGenre }: Props) => {
   const { data, isLoading, error } = useGenres();
   const skeletons: number[] = [...Array(20).keys()];
   //   console.log(skeletons);
@@ -31,14 +37,14 @@ const GenreList = () => {
                 src={getCroppedImageUrl(genre.image_background)}
               />
             </List.Indicator>
-            {/* <Button
+            <Button
               key={"button" + genre.id}
-              onClick={() => console.log(genre)}
+              onClick={() => onSelectGenre(genre)}
               fontSize="lg"
-              variant="ghost" */}
-            {/* > */}
-            {genre.name}
-            {/* </Button> */}
+              variant="ghost"
+            >
+              {genre.name}
+            </Button>
           </List.Item>
         ))}
       </List.Root>

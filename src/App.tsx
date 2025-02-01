@@ -2,9 +2,13 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
+import { Genre } from "./hooks/useGenres";
+import { useState } from "react";
 // Chakra v3 macht Anpassungen notwendig.
 
 function App() {
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+
   return (
     <Grid
       templateAreas={{
@@ -20,10 +24,13 @@ function App() {
         <NavBar />
       </GridItem>
       <GridItem area="aside" hideBelow="lg" paddingX={5}>
-        <GenreList />
+        {/* Hier kommt die Info an, dass sich ein ausgewähltes Genre geändert hat 
+        Dadurch wird ein Rerender ausgelöst, wobei ... [unten geht's weiter]*/}
+        <GenreList onSelectGenre={(genre) => setSelectedGenre(genre)} />
       </GridItem>
       <GridItem area="main">
-        <GameGrid />
+        {/* ... das ausgewählte Genre an das GameGrid übergeben wird */}
+        <GameGrid selectedGenre={selectedGenre} />
       </GridItem>
     </Grid>
   );
