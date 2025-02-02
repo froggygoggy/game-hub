@@ -3,6 +3,7 @@ import { SimpleGrid, Text } from "@chakra-ui/react";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import { Genre } from "@/hooks/useGenres";
+import PlatformSelector from "./PlatformSelector";
 // import GameCardContainer from "./GameCardContainer";
 
 // Das ausgewählte Genre wird an useGames Hook übergeben
@@ -17,6 +18,7 @@ const GameGrid = ({ selectedGenre }: Props) => {
   return (
     <>
       {error && <Text>{error}</Text>}
+      <PlatformSelector />
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
         padding="10px"
