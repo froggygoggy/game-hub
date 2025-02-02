@@ -26,7 +26,14 @@ function App() {
       <GridItem area="aside" hideBelow="lg" paddingX={5}>
         {/* Hier kommt die Info an, dass sich ein ausgewähltes Genre geändert hat 
         Dadurch wird ein Rerender ausgelöst, wobei ... [unten geht's weiter]*/}
-        <GenreList onSelectGenre={(genre) => setSelectedGenre(genre)} />
+        <GenreList
+          onSelectGenre={(genre) => {
+            setSelectedGenre(genre);
+            console.log("genre: ");
+            console.log(genre);
+          }}
+          selectedGenre={selectedGenre}
+        />
       </GridItem>
       <GridItem area="main">
         {/* ... das ausgewählte Genre an das GameGrid übergeben wird */}

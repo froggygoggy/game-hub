@@ -8,9 +8,10 @@ import GenreSkeleton from "./GenreSkeleton";
 // ein ausgewähltes Genre geändert hat
 interface Props {
   onSelectGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-const GenreList = ({ onSelectGenre }: Props) => {
+const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
   const { data, isLoading, error } = useGenres();
   const skeletons: number[] = [...Array(20).keys()];
   //   console.log(skeletons);
@@ -41,6 +42,7 @@ const GenreList = ({ onSelectGenre }: Props) => {
               key={"button" + genre.id}
               onClick={() => onSelectGenre(genre)}
               fontSize="lg"
+              fontWeight={selectedGenre?.id === genre.id ? "bold" : "normal"}
               variant="ghost"
             >
               {genre.name}
