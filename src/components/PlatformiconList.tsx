@@ -16,9 +16,10 @@ import { IconType } from "react-icons";
 interface Props {
   id: number;
   platforms: Platform[];
+  selectedPlatform: Platform | null;
 }
 
-const PlatformiconList = ({ id, platforms }: Props) => {
+const PlatformiconList = ({ id, platforms, selectedPlatform }: Props) => {
   //   [key:string]:Icon Type definiert ein index signature.
   //   So muss man das nicht für jeden Eintrag einzeln machen
   const iconMap: { [key: string]: IconType } = {
@@ -34,6 +35,7 @@ const PlatformiconList = ({ id, platforms }: Props) => {
     ios: MdPhoneIphone,
     web: BsGlobe,
   };
+
   return (
     <HStack marginY={1}>
       {platforms.map((platform) => (
@@ -41,7 +43,9 @@ const PlatformiconList = ({ id, platforms }: Props) => {
           //create unique keys by combination of game.id and platform.slug
           key={id + platform.slug}
           as={iconMap[platform.slug]}
-          color="gray.500"
+          color={
+            selectedPlatform?.id === platform.id ? "green.500" : "gray.500"
+          }
         />
       ))}
     </HStack>

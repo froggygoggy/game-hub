@@ -15,13 +15,21 @@ export interface Game {
   metacritic: number;
 }
 
-const useGames = (selectedGenre: Genre | null) =>
+const useGames = (
+  selectedGenre: Genre | null,
+  selectedPlatform: Platform | null
+) =>
   // useGames übergibt das ausgewählte Genre an das useData-Hook per params-Objekt.
-  useData<Game>("/games", { params: { genres: selectedGenre?.id } }, [
-    // Hier wird ein array of dependencies übergeben.
-    // Ändert sich das selected Genre, wird der Effekt-Hook erneut ausgelöst
-    //     und die aktualisierten Daten werden heruntergeladen
-    selectedGenre?.id,
-  ]);
+  useData<Game>(
+    "/games",
+    { params: { genres: selectedGenre?.id, platforms: selectedPlatform?.id } },
+    [
+      // Hier wird ein array of dependencies übergeben.
+      // Ändert sich das selected Genre, wird der Effekt-Hook erneut ausgelöst
+      //     und die aktualisierten Daten werden heruntergeladen
+      selectedGenre?.id,
+      selectedPlatform?.id,
+    ]
+  );
 
 export default useGames;

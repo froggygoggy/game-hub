@@ -4,11 +4,16 @@ import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import { Genre } from "./hooks/useGenres";
 import { useState } from "react";
+import { Platform } from "./hooks/useGames";
 import PlatformSelector from "./components/PlatformSelector";
 // Chakra v3 macht Anpassungen notwendig.
 
 function App() {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+
+  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
+    null
+  );
 
   return (
     <Grid
@@ -30,19 +35,19 @@ function App() {
         <GenreList
           onSelectGenre={(genre) => {
             setSelectedGenre(genre);
-            console.log("genre: ");
-            console.log(genre);
           }}
           selectedGenre={selectedGenre}
         />
       </GridItem>
       <GridItem area="main">
-        {/* ... das ausgewählte Genre an das GameGrid übergeben wird */}
-
-        <PlatformSelector />
-
-        {/* GameGrid verursacht zur Zeit Probleme */}
-        {/* <GameGrid selectedGenre={selectedGenre} /> */}
+        <PlatformSelector
+          selectedPlatform={selectedPlatform}
+          onSelectPlatform={(platform) => setSelectedPlatform(platform)}
+        />
+        <GameGrid
+          selectedPlatform={selectedPlatform}
+          selectedGenre={selectedGenre}
+        />
       </GridItem>
     </Grid>
   );
