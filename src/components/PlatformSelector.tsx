@@ -1,12 +1,12 @@
 import { Platform } from "@/hooks/useGames";
 import usePlatforms from "@/hooks/usePlatforms";
 import {
-  Button,
-  MenuContent,
-  MenuItem,
   MenuRoot,
   MenuTrigger,
-} from "@chakra-ui/react";
+  MenuContent,
+  MenuItem,
+} from "@/components/ui/menu";
+import { Button } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
 
 interface Props {
