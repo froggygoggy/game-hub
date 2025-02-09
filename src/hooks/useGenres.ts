@@ -7,6 +7,7 @@ export interface Genre {
 }
 
 // const useGenres = () => useData<Genre>("/genres");
+// use static Data:
 const useGenres = () => ({ data: genres, isLoading: false, error: null });
 
 export default useGenres;
