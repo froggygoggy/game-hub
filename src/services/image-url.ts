@@ -1,5 +1,9 @@
+import noImage from "../assets/no-image-placeholder.webp";
+
 const getCroppedImageUrl = (url: string) => {
-  if (!url) return "";
+  // console.log(url);
+  if (!url) return noImage;
+
   const target = "media/";
   // der Index soll die Position nach media/ in der Url angeben
   const index = url.indexOf("media/") + target.length;
