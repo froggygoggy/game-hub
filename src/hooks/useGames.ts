@@ -22,7 +22,12 @@ const useGames = (
   // useGames übergibt das ausgewählte Genre an das useData-Hook per params-Objekt.
   useData<Game>(
     "/games",
-    { params: { genres: selectedGenre?.id, platforms: selectedPlatform?.id } },
+    {
+      params: {
+        genres: selectedGenre?.id,
+        parent_platform: selectedPlatform?.id,
+      },
+    },
     [
       // Hier wird ein array of dependencies übergeben.
       // Ändert sich das selected Genre, wird der Effekt-Hook erneut ausgelöst
