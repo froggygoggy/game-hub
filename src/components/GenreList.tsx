@@ -14,10 +14,11 @@ interface Props {
 const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
   const { data, isLoading, error } = useGenres();
   const skeletons: number[] = [...Array(20).keys()];
-  //   console.log(skeletons);
 
+  // Folgendes benötigt man nur, wenn man die Daten vom Server holt
+  // kann aber auch stehen bleiben, weil bei den statischen Daten
+  //  error=null und isLoading = false ist
   if (error) return null;
-
   //   if (isLoading) return <Spinner />;
   if (isLoading)
     return skeletons.map((skeleton) => <GenreSkeleton key={skeleton} />);
