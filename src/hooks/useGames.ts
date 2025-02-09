@@ -1,3 +1,4 @@
+import { GameQuery } from "@/App";
 import useData from "./useData";
 import { Genre } from "./useGenres";
 
@@ -15,25 +16,20 @@ export interface Game {
   metacritic: number;
 }
 
-const useGames = (
-  selectedGenre: Genre | null,
-  selectedPlatform: Platform | null
-) =>
+const useGames = (gameQuery: GameQuery) =>
   // useGames übergibt das ausgewählte Genre an das useData-Hook per params-Objekt.
   useData<Game>(
     "/games",
     {
       params: {
-        genres: selectedGenre?.id,
-        parent_platform: selectedPlatform?.id,
+        genres: gameQuery.genre?.id,
+        parent_platform: gameQuery.platform?.id,
       },
     },
     [
-      // Hier wird ein array of dependencies übergeben.
-      // Ändert sich das selected Genre, wird der Effekt-Hook erneut ausgelöst
+      // Ändert sich das gameQuery Object, wird der Effekt-Hook erneut ausgelöst
       //     und die aktualisierten Daten werden heruntergeladen
-      selectedGenre?.id,
-      selectedPlatform?.id,
+      gameQuery,
     ]
   );
 

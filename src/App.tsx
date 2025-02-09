@@ -8,12 +8,13 @@ import { Platform } from "./hooks/useGames";
 import PlatformSelector from "./components/PlatformSelector";
 // Chakra v3 macht Anpassungen notwendig.
 
-function App() {
-  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+export interface GameQuery {
+  genre: Genre | null;
+  platform: Platform | null;
+}
 
-  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
-    null
-  );
+function App() {
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
   return (
     <Grid
@@ -34,20 +35,19 @@ function App() {
         Dadurch wird ein Rerender ausgelöst, wobei ... [unten geht's weiter]*/}
         <GenreList
           onSelectGenre={(genre) => {
-            setSelectedGenre(genre);
+            setGameQuery({ ...gameQuery, genre });
           }}
-          selectedGenre={selectedGenre}
+          selectedGenre={gameQuery.genre}
         />
       </GridItem>
       <GridItem area="main">
         <PlatformSelector
-          selectedPlatform={selectedPlatform}
-          onSelectPlatform={(platform) => setSelectedPlatform(platform)}
+          selectedPlatform={gameQuery.platform}
+          onSelectPlatform={(platform) =>
+            setGameQuery({ ...gameQuery, platform })
+          }
         />
-        <GameGrid
-          selectedPlatform={selectedPlatform}
-          selectedGenre={selectedGenre}
-        />
+        <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
   );

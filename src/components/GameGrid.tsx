@@ -3,16 +3,16 @@ import { SimpleGrid, Text } from "@chakra-ui/react";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import { Genre } from "@/hooks/useGenres";
+import { GameQuery } from "@/App";
 // import GameCardContainer from "./GameCardContainer";
 
 // Das ausgewählte Genre wird an useGames Hook übergeben
 interface Props {
-  selectedGenre: Genre | null;
-  selectedPlatform: Platform | null;
+  gameQuery: GameQuery;
 }
 
-const GameGrid = ({ selectedGenre, selectedPlatform }: Props) => {
-  const { data, error, isLoading } = useGames(selectedGenre, selectedPlatform);
+const GameGrid = ({ gameQuery }: Props) => {
+  const { data, error, isLoading } = useGames(gameQuery);
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   return (
@@ -37,7 +37,7 @@ const GameGrid = ({ selectedGenre, selectedPlatform }: Props) => {
           <GameCard
             key={game.id}
             game={game}
-            selectedPlatform={selectedPlatform}
+            selectedPlatform={gameQuery.platform}
           ></GameCard>
           // </GameCardContainer>
         ))}
