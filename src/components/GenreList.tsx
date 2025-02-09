@@ -1,6 +1,6 @@
 import useGenres, { Genre } from "@/hooks/useGenres";
 import getCroppedImageUrl from "@/services/image-url";
-import { Button, Image, List } from "@chakra-ui/react";
+import { Box, Button, Heading, Image, List } from "@chakra-ui/react";
 // import { Spinner } from "@chakra-ui/react";
 import GenreSkeleton from "./GenreSkeleton";
 
@@ -28,25 +28,32 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
       {/* {skeletons.map(() => (
         <GenreSkeleton />
       ))} */}
+      <Heading marginBottom={3}>Genres</Heading>
       <List.Root gap="2" variant="plain" align="center">
         {data.map((genre) => (
           <List.Item key={"genre" + genre.id}>
             <List.Indicator asChild>
               <Image
+                objectFit="cover"
                 boxSize="32px"
                 borderRadius={8}
                 src={getCroppedImageUrl(genre.image_background)}
               />
             </List.Indicator>
-            <Button
-              key={"button" + genre.id}
-              onClick={() => onSelectGenre(genre)}
-              fontSize="lg"
-              fontWeight={selectedGenre?.id === genre.id ? "bold" : "normal"}
-              variant="ghost"
-            >
-              {genre.name}
-            </Button>
+            {/* Box is necessary to keep the Button within the given space */}
+            <Box>
+              <Button
+                whiteSpace="normal"
+                textAlign="left"
+                key={"button" + genre.id}
+                onClick={() => onSelectGenre(genre)}
+                fontSize="lg"
+                fontWeight={selectedGenre?.id === genre.id ? "bold" : "normal"}
+                variant="ghost"
+              >
+                {genre.name}
+              </Button>
+            </Box>
           </List.Item>
         ))}
       </List.Root>

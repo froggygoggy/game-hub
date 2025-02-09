@@ -22,6 +22,7 @@ function App() {
 
   return (
     <Grid
+      inline={true}
       templateAreas={{
         base: `"nav" "main"`, //"0em", // 0px
         lg: `"nav nav" "aside main"`, //"62em", // ~992px
